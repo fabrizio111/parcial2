@@ -2,19 +2,18 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <style>
       .table {
-          border-collapse: collapse; /* Colapsa los bordes para que haya un único borde entre filas */
-          margin: 20px 0; /* Añade un poco de margen arriba y abajo de la tabla */
+          border-collapse: collapse; 
+          margin: 20px 0; 
       }
       .table th, .table td {
-          border: 1px solid #dee2e6; /* Añade bordes sutiles a cada celda */
-          padding: 8px 12px; /* Espaciado interno en celdas */
+          border: 1px solid #dee2e6; 
+          padding: 8px 12px; 
       }
       .table thead th {
-          background-color: #121313; /* Color de fondo para los encabezados */
-          border-bottom: 2px solid #dee2e6; /* Borde más grueso en la parte inferior de los encabezados */
+          border-bottom: 2px solid #dee2e6; 
       }
       .table tbody tr:nth-child(odd) {
-          background-color: #f2f2f2; /* Color de fondo para filas impares para mejorar la legibilidad */
+          background-color: #f2f2f2; 
       }
   </style>
 </head>
@@ -29,7 +28,7 @@
           <th scope="col">Nombre</th>
           <th scope="col">Nombre Cientifico</th>
           <th scope="col">Alimentacion</th>
-          <th scope="col">Distribucion Mundial</th>
+          <th scope="col">Distribución Mundial</th>
         </tr>
       </thead>
       <tbody>
@@ -48,3 +47,12 @@
       <app-detail-pinguino [pinguino]="selectedPinguino"></app-detail-pinguino>
   </div>
 </div>
+
+<div class="row" *ngIf="especieConMayorDistribucion">
+  <div class="col-12">
+    <p class="text-center">
+      La especie con mayor distribución mundial es <strong>{{ especieConMayorDistribucion.name }}</strong> con presencia en <strong>{{ especieConMayorDistribucion.global_distribution.split(', ').length }}</strong> países.
+    </p>
+  </div>
+</div>
+

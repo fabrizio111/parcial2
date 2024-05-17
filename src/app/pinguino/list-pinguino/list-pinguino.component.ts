@@ -13,7 +13,7 @@ export class ListPinguinoComponent implements OnInit {
   selected: Boolean = false;
   selectedPinguino!: Pinguino;
 
-  mayorDistribucion: number = 0;
+  especieConMayorDistribucion!: Pinguino;
 
   constructor(private pinguinoService: PinguinoService) { }
 
@@ -21,6 +21,7 @@ export class ListPinguinoComponent implements OnInit {
     this.pinguinoService.getPinguinos().subscribe(
       pinguinos => {
         this.pinguinos = pinguinos;
+        this.calcularEspecieConMayorDistribucion();
       }
     );
   }
@@ -32,6 +33,12 @@ export class ListPinguinoComponent implements OnInit {
 
   ngOnInit() {
     this.getPinguinos();
+  }
+
+  calcularEspecieConMayorDistribucion() {
+    this.especieConMayorDistribucion = this.pinguinos.reduce((prev, current) => {
+      return (prev.global_distribution.split(', ').length > current.global_distribution.split(', ').length) ? prev : current;
+    }, this.pinguinos[0]);
   }
 
 }
