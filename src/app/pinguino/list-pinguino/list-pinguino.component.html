@@ -1,0 +1,50 @@
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+      .table {
+          border-collapse: collapse; /* Colapsa los bordes para que haya un único borde entre filas */
+          margin: 20px 0; /* Añade un poco de margen arriba y abajo de la tabla */
+      }
+      .table th, .table td {
+          border: 1px solid #dee2e6; /* Añade bordes sutiles a cada celda */
+          padding: 8px 12px; /* Espaciado interno en celdas */
+      }
+      .table thead th {
+          background-color: #121313; /* Color de fondo para los encabezados */
+          border-bottom: 2px solid #dee2e6; /* Borde más grueso en la parte inferior de los encabezados */
+      }
+      .table tbody tr:nth-child(odd) {
+          background-color: #f2f2f2; /* Color de fondo para filas impares para mejorar la legibilidad */
+      }
+  </style>
+</head>
+
+
+<div class="row">
+  <div class="col-8 offset-1">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Nombre Cientifico</th>
+          <th scope="col">Alimentacion</th>
+          <th scope="col">Distribucion Mundial</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pinguino of pinguinos" (click)="onSelected(pinguino)">
+          <th scope="row">{{pinguino.id}}</th>
+          <td>{{pinguino.name}}</td>
+          <td>{{pinguino.scientific_name}}</td>
+          <td>{{pinguino.feeding}}</td>
+          <td>{{pinguino.global_distribution}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-3" *ngIf="selected">
+      <app-detail-pinguino [pinguino]="selectedPinguino"></app-detail-pinguino>
+  </div>
+</div>
